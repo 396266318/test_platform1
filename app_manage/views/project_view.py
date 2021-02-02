@@ -24,9 +24,9 @@ def add_project(request):
     if request.method == "POST":
         form = ProjectForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data["name"]
-            describe = form.cleaned_data["describe"]
-            status = form.cleaned_data["status"]
+            name = form.cleaned_data["project_name"]
+            describe = form.cleaned_data["project_describe"]
+            status = form.cleaned_data["project_status"]
             print("状态", status, type(status))
             Project.objects.create(project_name=name, project_describe=describe, project_status=status)
         return HttpResponseRedirect('/manage/')
