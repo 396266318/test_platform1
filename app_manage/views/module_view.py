@@ -14,7 +14,7 @@ from app_manage.forms import ProjectForm, ProjectEditForm, ModuleForm
 def list_module(request):
     """模块列表"""
     module_list = Module.objects.all()
-    return render(request, "module/list.html", {"moduls": module_list})
+    return render(request, "module/list.html", {"modules": module_list})
 
 
 def add_module(request):
@@ -23,8 +23,8 @@ def add_module(request):
         form = ModuleForm(request.POST)
         if form.is_valid():
             project = form.cleaned_data['project']
-            name = form.cleaned_data['name']
-            describe = form.cleaned_data['describe']
+            name = form.cleaned_data['module_name']
+            describe = form.cleaned_data['module_describe']
             Module.objects.create(module_name=name, module_describe=describe, project=project)
 
         return HttpResponseRedirect("/manage/module_list/")
@@ -39,10 +39,10 @@ def edit_module(request, mid):
         form = ModuleForm(request.POST)
         if form.is_valid():
             project = form.cleaned_data['project']
-            name = form.cleaned_data['name']
-            describe = form.cleaned_data['describe']
+            name = form.cleaned_data['module_name']
+            describe = form.cleaned_data['module_describe']
 
-            m = ModuleForm.objects.get(id=mid)
+            m = Module.objects.get(id=mid)
             m.project = project
             m.name = name
             m.describe = describe

@@ -11,9 +11,11 @@ def hello(request):
 
 def login(request):
     """用户登录"""
+    # 返回登录页面
     if request.method == "GET":
         return render(request, 'login.html')
 
+    # 处理登录请求
     if request.method == "POST":
         username = request.POST.get("username", "")
         password = request.POST.get("password", "")
@@ -23,7 +25,7 @@ def login(request):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)  # 记录用户的登录状态
-            response = HttpResponseRedirect("hello")
+            response = HttpResponseRedirect("/hello")
             response.set_cookie("user", username, 3600)
             return response
         else:
