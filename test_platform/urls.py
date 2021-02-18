@@ -30,4 +30,13 @@ urlpatterns = [
 
     # 项目管理
     path('manage/', include('app_manage.urls')),
+
+    # 用例管理
+    path('case/', include('app_case.urls')),
+
+    # 任务管理
+    # path(),
+
+    # 变量管理
+    path('variable/', include('app_variable.urls'))
 ]
