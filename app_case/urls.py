@@ -14,6 +14,7 @@ urlpatterns = [
     path('edit_case/<int:cid>', views.edit_case),          # 编辑用例
     path('send_req/', views.send_case),                    # 发送接口请求
     path('assert_result/', views.assert_result),           # 断言结果
+    path('get_select_data/', views.get_select_data),       # 获取select下拉框需要项目
     path('save_case/', views.save_case),                   # 保存用例
     path('delete_case/', views.delete_case),               # 删除用例
 

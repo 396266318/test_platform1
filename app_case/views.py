@@ -22,7 +22,7 @@ def list_case(request):
         page_cases = p.page(p.num_pages)
     except PageNotAnInteger:
         page_cases = p.page(1)
-    return render(request, "case/list.html", {"case": page_cases})
+    return render(request, "case/list.html", {"cases": page_cases})
 
 
 def add_case(request):
@@ -105,22 +105,22 @@ def assert_result(request):
         return JsonResponse({"code": 10102, "message": "请求方法错误"})
 
 
-def get_select_data(requests):
+def get_select_data(request):
     """获取select下拉框需要项目/模块数据"""
-    if requests.method == "GET":
-        projecs =Project.objects.add()
+    if request.method == "GET":
+        projects = Project.objects.all()
         data_list = []
-        for p in projecs:
+        for p in projects:
             project_dict = {
                 "id": p.id,
-                "name": p.name
+                "name": p.project_name
             }
-            modules = Module.objects.filter(peoject=p)
+            modules = Module.objects.filter(project=p)
             module_list = []
             for m in modules:
                 module_dict = {
                     "id": m.id,
-                    "name": m.name
+                    "name": m.module_name
                 }
                 module_list.append(module_dict)
             project_dict["moduleList"] = module_list
@@ -179,13 +179,13 @@ def save_case(request):
                 url=url,
                 module_id=module_id,
                 name=case_name,
-                method=method,
+                method=method_int,
                 header=header,
                 parameter_type=per_type_int,
                 parameter_body=per_value,
                 result=result_text,
                 assert_text=assert_text,
-                assert_type=assert_type_int
+                assert_type=assert_type_int,
             )
             return JsonResponse({"code": 10200, "message": "create success"})
         else:
