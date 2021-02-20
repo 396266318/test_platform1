@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite errors="0" failures="0" file=".py" name="TaskTest-20191222141643" skipped="0" tests="1" time="0.012" timestamp="2019-12-22T14:16:43">
+        <testcase classname="TaskTest" file="app_task\extend\task_run.py" line="15" name="test_file_data_json_dict_dict_00001_本地接口1" time="0.012" timestamp="2019-12-22T14:16:43">
+            <system-out>
+                <![CDATA[]]>
+            </system-out>
+            <system-err>
+                <![CDATA[]]>
+            </system-err>
+        </testcase>
+    </testsuite>
+</testsuites>
